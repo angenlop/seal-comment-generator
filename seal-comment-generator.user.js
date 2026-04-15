@@ -54,13 +54,13 @@
                 </div>
 
                 <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
-                    <button class="btn btn-small btn-primary" id="nonMediaBtn" style="flex: 1; min-width: 120px;">
-                        Non-Media Format
+                    <button class="btn btn-small btn-primary" id="nonMediaBtn" style="flex: 1; min-width: 140px;">
+                        Non-Intact Rack Format
                     </button>
-                    <button class="btn btn-small btn-primary" id="mediaBtn" style="flex: 1; min-width: 120px;">
-                        Media Format
+                    <button class="btn btn-small btn-primary" id="mediaBtn" style="flex: 1; min-width: 140px;">
+                        Intact Rack Format
                     </button>
-                    <button class="btn btn-small btn-primary" id="palletBtn" style="flex: 1; min-width: 120px;">
+                    <button class="btn btn-small btn-primary" id="palletBtn" style="flex: 1; min-width: 140px;">
                         Pallet Format
                     </button>
                 </div>
@@ -216,7 +216,7 @@
             }
 
             let sealText = seal2 ? seal1 + ' and ' + seal2 : seal1;
-            
+
             const lines = [
                 'Pallet I.D.#: ' + palletId,
                 'Sealed with Seal(s)#: ' + sealText,
