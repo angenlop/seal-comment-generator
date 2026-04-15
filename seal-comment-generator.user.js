@@ -1,4 +1,3 @@
-
 // ==UserScript==
 // @name         Seal# Comment Generator
 // @namespace    http://tampermonkey.net/
@@ -29,8 +28,8 @@
         const dialog = document.createElement('div');
         dialog.innerHTML = `
             <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-                        background: linear-gradient(to bottom, #ffffff, #f8f9fa); padding: 16px; 
-                        border: 1px solid #dee2e6; z-index: 10000; border-radius: 8px; 
+                        background: linear-gradient(to bottom, #ffffff, #f8f9fa); padding: 16px;
+                        border: 1px solid #dee2e6; z-index: 10000; border-radius: 8px;
                         box-shadow: 0 4px 20px rgba(0,0,0,0.15); min-width: 320px; max-width: 380px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                     <h3 style="margin: 0; font-size: 16px; color: #212529; font-weight: 600;">Seal Information</h3>
@@ -55,17 +54,17 @@
                            placeholder="Second seal (if applicable)">
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;">
-                    <button class="btn btn-small btn-primary" id="nonMediaBtn" style="padding: 8px 6px; font-size: 11px; white-space: nowrap;">
-                        Non-Intact Rack
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 10px;">
+                    <button class="btn btn-small btn-primary" id="nonMediaBtn" style="padding: 8px 4px; font-size: 10px; white-space: nowrap;">
+                        Non-Intact
                     </button>
-                    <button class="btn btn-small btn-primary" id="mediaBtn" style="padding: 8px 6px; font-size: 11px; white-space: nowrap;">
+                    <button class="btn btn-small btn-primary" id="mediaBtn" style="padding: 8px 4px; font-size: 10px; white-space: nowrap;">
                         Intact Rack
                     </button>
+                    <button class="btn btn-small btn-primary" id="palletBtn" style="padding: 8px 4px; font-size: 10px; white-space: nowrap;">
+                        Pallet
+                    </button>
                 </div>
-                <button class="btn btn-small btn-primary" id="palletBtn" style="width: 100%; padding: 8px; font-size: 11px; margin-bottom: 10px;">
-                    Pallet Format
-                </button>
 
                 <div style="border-top: 1px solid #dee2e6; padding-top: 10px;">
                     <div id="previewText" style="font-size: 11px; color: #6c757d; min-height: 30px; white-space: pre-wrap;"></div>
@@ -178,8 +177,8 @@
         const palletDialog = document.createElement('div');
         palletDialog.innerHTML = `
             <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-                        background: linear-gradient(to bottom, #ffffff, #f8f9fa); padding: 16px; 
-                        border: 1px solid #dee2e6; z-index: 10001; border-radius: 8px; 
+                        background: linear-gradient(to bottom, #ffffff, #f8f9fa); padding: 16px;
+                        border: 1px solid #dee2e6; z-index: 10001; border-radius: 8px;
                         box-shadow: 0 4px 20px rgba(0,0,0,0.15); min-width: 400px; max-width: 500px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                     <h3 style="margin: 0; font-size: 16px; color: #212529; font-weight: 600;">Pallet Format - Device List</h3>
@@ -312,4 +311,3 @@
 
     waitForContainer();
 })();
-
