@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         Seal# Comment Generator
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  Format rack asset and seal information with enhanced UI
 // @match        https://*.amazon.com/*
 // @updateURL    https://raw.githubusercontent.com/angenlop/seal-comment-generator/main/seal-comment-generator.user.js
@@ -55,15 +55,20 @@
                            placeholder="Second seal (if applicable)">
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 10px;">
-                    <button class="btn btn-small btn-primary" id="nonMediaBtn" style="padding: 10px 4px; font-size: 11px; white-space: nowrap;">
-                        Non-Intact
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px;">
+                    <button class="btn btn-small btn-primary" id="nonMediaBtn" style="padding: 10px 4px; font-size: 10px; white-space: nowrap;">
+                        Non-Intact Rack
                     </button>
-                    <button class="btn btn-small btn-primary" id="mediaBtn" style="padding: 10px 4px; font-size: 11px; white-space: nowrap;">
+                    <button class="btn btn-small btn-primary" id="mediaBtn" style="padding: 10px 4px; font-size: 10px; white-space: nowrap;">
                         Intact Rack
                     </button>
-                    <button class="btn btn-small btn-primary" id="palletBtn" style="padding: 10px 4px; font-size: 11px; white-space: nowrap;">
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px;">
+                    <button class="btn btn-small btn-primary" id="palletBtn" style="padding: 10px 4px; font-size: 10px; white-space: nowrap;">
                         Pallet
+                    </button>
+                    <button class="btn btn-small btn-primary" id="patchBtn" style="padding: 10px 4px; font-size: 10px; white-space: nowrap;">
+                        Patch Rack
                     </button>
                 </div>
 
@@ -157,6 +162,12 @@
             } else {
                 showNotification('Please fill in pallet ID and at least one seal number first', true);
             }
+        });
+
+        dialog.querySelector('#patchBtn').addEventListener('click', () => {
+            const lines = ['Patch Rack does not need to be wrapped', 'Verified there is no media in rack'];
+            copyToClipboard(lines.join(NL));
+            dialog.remove();
         });
 
         dialog.querySelector('#closeBtn').addEventListener('click', () => {
