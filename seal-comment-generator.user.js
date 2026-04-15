@@ -1,4 +1,3 @@
-
 // ==UserScript==
 // @name         Seal# Comment Generator
 // @namespace    http://tampermonkey.net/
@@ -208,4 +207,3 @@
 
     waitForContainer();
 })();
-
