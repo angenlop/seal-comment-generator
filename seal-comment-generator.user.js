@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         Seal# Comment Generator
 // @namespace    http://tampermonkey.net/
-// @version      0.9
+// @version      1.0
 // @description  Format rack asset and seal information with enhanced UI
 // @match        https://*.amazon.com/*
 // @updateURL    https://raw.githubusercontent.com/angenlop/seal-comment-generator/main/seal-comment-generator.user.js
@@ -122,7 +122,7 @@
                 if (sealNumber2) {
                     sealText = 'Seal#: ' + sealNumber + ' and ' + sealNumber2;
                 }
-                const lines = ['Rack Asset/ Pallet ID #: ' + rackAsset, 'Contains no customer data bearing drives and is sealed with ' + sealText, 'I bagged and securely sealed the rack with tamper evident seals according to standard and in preparation for RZ-to-RZ transfer to RRL.'];
+                const lines = ['Rack Asset #: ' + rackAsset, 'Contains no customer data bearing drives and is sealed with ' + sealText, 'I bagged and securely sealed the rack with tamper evident seals according to standard and in preparation for RZ-to-RZ transfer to RRL.'];
                 copyToClipboard(lines.join(NL));
                 dialog.remove();
             } else {
@@ -139,7 +139,7 @@
                 if (sealNumber2) {
                     sealText = 'Sealed with Seal#: ' + sealNumber + ' and ' + sealNumber2;
                 }
-                const lines = ['Rack Asset/ Pallet ID #: ' + rackAsset, sealText, 'Rack has drives and is being shipped intact for RRL to process.', 'Refer to step 11.1.1 of the Network SOP: https://policy.a2z.com/docs/59394/publication', 'I bagged and securely sealed the rack with tamper-evident seals according to standard and in preparation for RZ-to-RZ transfer to RRL.'];
+                const lines = ['Rack Asset #: ' + rackAsset, sealText, 'Rack has drives and is being shipped intact for RRL to process.', 'Refer to step 11.1.1 of the Network SOP: https://policy.a2z.com/docs/59394/publication', 'I bagged and securely sealed the rack with tamper-evident seals according to standard and in preparation for RZ-to-RZ transfer to RRL.'];
                 copyToClipboard(lines.join(NL));
                 dialog.remove();
             } else {
