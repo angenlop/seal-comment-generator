@@ -56,18 +56,18 @@
                 </div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px;">
-                    <button class="btn btn-small btn-primary" id="nonMediaBtn" style="padding: 10px 4px; font-size: 10px; white-space: nowrap;">
+                    <button class="btn btn-small btn-primary" id="nonMediaBtn" style="padding: 10px 4px; font-size: 12px; white-space: nowrap;">
                         Non-Intact Rack
                     </button>
-                    <button class="btn btn-small btn-primary" id="mediaBtn" style="padding: 10px 4px; font-size: 10px; white-space: nowrap;">
+                    <button class="btn btn-small btn-primary" id="mediaBtn" style="padding: 10px 4px; font-size: 12px; white-space: nowrap;">
                         Intact Rack
                     </button>
                 </div>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px;">
-                    <button class="btn btn-small btn-primary" id="palletBtn" style="padding: 10px 4px; font-size: 10px; white-space: nowrap;">
+                    <button class="btn btn-small btn-primary" id="palletBtn" style="padding: 10px 4px; font-size: 12px; white-space: nowrap;">
                         Pallet
                     </button>
-                    <button class="btn btn-small btn-primary" id="patchBtn" style="padding: 10px 4px; font-size: 10px; white-space: nowrap;">
+                    <button class="btn btn-small btn-primary" id="patchBtn" style="padding: 10px 4px; font-size: 12px; white-space: nowrap;">
                         Patch Rack
                     </button>
                 </div>
