@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Seal# Comment Generator
 // @namespace    http://tampermonkey.net/
-// @version      0.4
+// @version      0.5
 // @description  Format rack asset and seal information with enhanced UI
 // @match        https://*.amazon.com/*
 // @updateURL    https://raw.githubusercontent.com/angenlop/seal-comment-generator/main/seal-comment-generator.user.js
@@ -68,10 +68,8 @@
             const previewDiv = dialog.querySelector('#previewText');
 
             if (rackAsset || sealNumber) {
-                previewDiv.innerHTML = '<strong>Preview:</strong>
-' +
-                    `Rack Asset#: ${rackAsset || '[pending]'}
-` +
+                previewDiv.innerHTML = '<strong>Preview:</strong><br>' +
+                    `Rack Asset#: ${rackAsset || '[pending]'}<br>` +
                     `Seal#: ${sealNumber || '[pending]'}...`;
             } else {
                 previewDiv.textContent = 'Enter rack asset and seal numbers to see preview...';
@@ -87,12 +85,10 @@
             input.addEventListener('input', updatePreview);
             input.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
-                    e.preventDefault(); // Prevent the default "Enter" key behavior
-                    // If it's the first input (rackAsset), focus the second input (sealNumber)
+                    e.preventDefault();
                     if (index === 0) {
                         sealInput.focus();
                     }
-                    // If both fields are filled, show a notification to select format type
                     if (rackInput.value && sealInput.value) {
                         showNotification('Please select format type', false);
                     }
