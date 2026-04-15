@@ -1,7 +1,8 @@
+
 // ==UserScript==
 // @name         Seal# Comment Generator
 // @namespace    http://tampermonkey.net/
-// @version      0.8
+// @version      0.9
 // @description  Format rack asset and seal information with enhanced UI
 // @match        https://*.amazon.com/*
 // @updateURL    https://raw.githubusercontent.com/angenlop/seal-comment-generator/main/seal-comment-generator.user.js
@@ -28,45 +29,46 @@
         const dialog = document.createElement('div');
         dialog.innerHTML = `
             <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-                        background: white; padding: 20px; border: 1px solid #ccc; z-index: 10000;
-                        border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); min-width: 300px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                    <h3 style="margin: 0;">Seal Information</h3>
-                    <button class="btn btn-small" id="closeBtn" style="padding: 0 5px;">×</button>
+                        background: linear-gradient(to bottom, #ffffff, #f8f9fa); padding: 16px; 
+                        border: 1px solid #dee2e6; z-index: 10000; border-radius: 8px; 
+                        box-shadow: 0 4px 20px rgba(0,0,0,0.15); min-width: 320px; max-width: 380px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h3 style="margin: 0; font-size: 16px; color: #212529; font-weight: 600;">Seal Information</h3>
+                    <button class="btn btn-small" id="closeBtn" style="padding: 2px 8px; font-size: 18px; line-height: 1; cursor: pointer;">×</button>
                 </div>
 
-                <div style="margin-bottom: 15px;">
-                    <label>Rack Asset/ Pallet ID #:</label><br>
-                    <input type="text" id="rackAsset" style="width: 100%; padding: 5px; margin-top: 5px;"
-                           placeholder="Enter rack asset or pallet ID number">
+                <div style="margin-bottom: 10px;">
+                    <label style="font-size: 12px; font-weight: 500; color: #495057;">Rack Asset/ Pallet ID #</label>
+                    <input type="text" id="rackAsset" style="width: 100%; padding: 6px 8px; margin-top: 3px; border: 1px solid #ced4da; border-radius: 4px; font-size: 13px;"
+                           placeholder="Enter ID number">
                 </div>
 
-                <div style="margin-bottom: 15px;">
-                    <label>Seal #:</label><br>
-                    <input type="text" id="sealNumber" style="width: 100%; padding: 5px; margin-top: 5px;"
+                <div style="margin-bottom: 10px;">
+                    <label style="font-size: 12px; font-weight: 500; color: #495057;">Seal #</label>
+                    <input type="text" id="sealNumber" style="width: 100%; padding: 6px 8px; margin-top: 3px; border: 1px solid #ced4da; border-radius: 4px; font-size: 13px;"
                            placeholder="Enter seal number">
                 </div>
 
-                <div style="margin-bottom: 20px;">
-                    <label>Seal #2 (optional):</label><br>
-                    <input type="text" id="sealNumber2" style="width: 100%; padding: 5px; margin-top: 5px;"
-                           placeholder="Enter second seal number (if applicable)">
+                <div style="margin-bottom: 14px;">
+                    <label style="font-size: 12px; font-weight: 500; color: #6c757d;">Seal #2 <span style="font-weight: 400;">(optional)</span></label>
+                    <input type="text" id="sealNumber2" style="width: 100%; padding: 6px 8px; margin-top: 3px; border: 1px solid #ced4da; border-radius: 4px; font-size: 13px;"
+                           placeholder="Second seal (if applicable)">
                 </div>
 
-                <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
-                    <button class="btn btn-small btn-primary" id="nonMediaBtn" style="flex: 1; min-width: 140px;">
-                        Non-Intact Rack Format
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;">
+                    <button class="btn btn-small btn-primary" id="nonMediaBtn" style="padding: 8px 6px; font-size: 11px; white-space: nowrap;">
+                        Non-Intact Rack
                     </button>
-                    <button class="btn btn-small btn-primary" id="mediaBtn" style="flex: 1; min-width: 140px;">
-                        Intact Rack Format
-                    </button>
-                    <button class="btn btn-small btn-primary" id="palletBtn" style="flex: 1; min-width: 140px;">
-                        Pallet Format
+                    <button class="btn btn-small btn-primary" id="mediaBtn" style="padding: 8px 6px; font-size: 11px; white-space: nowrap;">
+                        Intact Rack
                     </button>
                 </div>
+                <button class="btn btn-small btn-primary" id="palletBtn" style="width: 100%; padding: 8px; font-size: 11px; margin-bottom: 10px;">
+                    Pallet Format
+                </button>
 
-                <div style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 15px;">
-                    <div id="previewText" style="font-size: 12px; color: #666; margin-bottom: 10px; white-space: pre-wrap;"></div>
+                <div style="border-top: 1px solid #dee2e6; padding-top: 10px;">
+                    <div id="previewText" style="font-size: 11px; color: #6c757d; min-height: 30px; white-space: pre-wrap;"></div>
                 </div>
             </div>
         `;
@@ -80,13 +82,12 @@
             if (rackAsset || sealNumber || sealNumber2) {
                 let sealText = sealNumber || '[pending]';
                 if (sealNumber2) {
-                    sealText += ' and ' + sealNumber2;
+                    sealText += ' & ' + sealNumber2;
                 }
-                previewDiv.innerHTML = '<strong>Preview:</strong><br>' +
-                    `Rack Asset/ Pallet ID #: ${rackAsset || '[pending]'}<br>` +
-                    `Seal#: ${sealText}...`;
+                previewDiv.innerHTML = '<strong style="color: #495057;">Preview:</strong><br>' +
+                    `ID: ${rackAsset || '[pending]'} | Seal: ${sealText}`;
             } else {
-                previewDiv.textContent = 'Enter rack asset/pallet ID and seal numbers to see preview...';
+                previewDiv.textContent = 'Enter information to preview...';
             }
         };
 
@@ -177,30 +178,31 @@
         const palletDialog = document.createElement('div');
         palletDialog.innerHTML = `
             <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-                        background: white; padding: 20px; border: 1px solid #ccc; z-index: 10001;
-                        border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); min-width: 400px; max-width: 600px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                    <h3 style="margin: 0;">Pallet Format - Device List</h3>
-                    <button class="btn btn-small" id="closePalletBtn" style="padding: 0 5px;">×</button>
+                        background: linear-gradient(to bottom, #ffffff, #f8f9fa); padding: 16px; 
+                        border: 1px solid #dee2e6; z-index: 10001; border-radius: 8px; 
+                        box-shadow: 0 4px 20px rgba(0,0,0,0.15); min-width: 400px; max-width: 500px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h3 style="margin: 0; font-size: 16px; color: #212529; font-weight: 600;">Pallet Format - Device List</h3>
+                    <button class="btn btn-small" id="closePalletBtn" style="padding: 2px 8px; font-size: 18px; line-height: 1; cursor: pointer;">×</button>
                 </div>
 
-                <div style="margin-bottom: 15px;">
-                    <label style="font-weight: bold;">Pallet ID: ${palletId}</label><br>
-                    <label style="font-weight: bold;">Seal(s): ${seal2 ? seal1 + ' and ' + seal2 : seal1}</label>
+                <div style="background: #e9ecef; padding: 10px; border-radius: 4px; margin-bottom: 12px;">
+                    <div style="font-size: 12px; color: #495057;"><strong>Pallet ID:</strong> ${palletId}</div>
+                    <div style="font-size: 12px; color: #495057;"><strong>Seal(s):</strong> ${seal2 ? seal1 + ' and ' + seal2 : seal1}</div>
                 </div>
 
-                <div style="margin-bottom: 15px;">
-                    <label>Paste device list (one per line):</label><br>
-                    <textarea id="deviceList" style="width: 100%; padding: 8px; margin-top: 5px; min-height: 150px; font-family: monospace; font-size: 12px;"
+                <div style="margin-bottom: 12px;">
+                    <label style="font-size: 12px; font-weight: 500; color: #495057; display: block; margin-bottom: 4px;">Device List (one per line)</label>
+                    <textarea id="deviceList" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; min-height: 120px; font-family: monospace; font-size: 12px; resize: vertical;"
                               placeholder="Example:&#10;Rack Asset: 12345&#10;Rack Asset: 67890&#10;Device: ABC123"></textarea>
-                    <div style="font-size: 11px; color: #666; margin-top: 5px;">
-                        Tip: Paste your list of rack assets or devices here
+                    <div style="font-size: 10px; color: #6c757d; margin-top: 4px;">
+                        💡 Paste your list of rack assets or devices here
                     </div>
                 </div>
 
-                <div style="display: flex; gap: 10px; justify-content: flex-end;">
-                    <button class="btn btn-small" id="cancelPalletBtn">Cancel</button>
-                    <button class="btn btn-small btn-primary" id="completePalletBtn">Complete</button>
+                <div style="display: flex; gap: 8px; justify-content: flex-end;">
+                    <button class="btn btn-small" id="cancelPalletBtn" style="padding: 6px 16px;">Cancel</button>
+                    <button class="btn btn-small btn-primary" id="completePalletBtn" style="padding: 6px 16px;">Complete</button>
                 </div>
             </div>
         `;
@@ -310,3 +312,4 @@
 
     waitForContainer();
 })();
+
