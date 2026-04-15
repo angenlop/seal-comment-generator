@@ -78,6 +78,7 @@
 
         const rackInput = dialog.querySelector('#rackAsset');
         const sealInput = dialog.querySelector('#sealNumber');
+        const newline = String.fromCharCode(10);
 
         [rackInput, sealInput].forEach((input, index) => {
             input.addEventListener('input', updatePreview);
@@ -103,8 +104,7 @@
                     'Contains no customer data bearing drives and is sealed with Seal#: ' + sealNumber,
                     'I bagged and securely sealed the rack with tamper evident seals according to standard and in preparation for RZ-to-RZ transfer to RRL.'
                 ];
-                copyToClipboard(lines.join('
-'));
+                copyToClipboard(lines.join(newline));
                 dialog.remove();
             } else {
                 showNotification('Please fill in both fields', true);
@@ -122,8 +122,7 @@
                     'Refer to step 11.1.1 of the Network SOP: https://policy.a2z.com/docs/59394/publication',
                     'I bagged and securely sealed the rack with tamper-evident seals according to standard and in preparation for RZ-to-RZ transfer to RRL.'
                 ];
-                copyToClipboard(lines.join('
-'));
+                copyToClipboard(lines.join(newline));
                 dialog.remove();
             } else {
                 showNotification('Please fill in both fields', true);
