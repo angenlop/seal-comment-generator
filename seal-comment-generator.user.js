@@ -1,3 +1,4 @@
+
 // ==UserScript==
 // @name         Seal# Comment Generator
 // @namespace    http://tampermonkey.net/
@@ -28,29 +29,29 @@
         const dialog = document.createElement('div');
         dialog.innerHTML = `
             <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-                        background: linear-gradient(to bottom, #ffffff, #f8f9fa); padding: 16px;
+                        background: linear-gradient(to bottom, #ffffff, #f8f9fa); padding: 18px;
                         border: 1px solid #dee2e6; z-index: 10000; border-radius: 8px;
-                        box-shadow: 0 4px 20px rgba(0,0,0,0.15); min-width: 320px; max-width: 380px;">
+                        box-shadow: 0 4px 20px rgba(0,0,0,0.15); width: 360px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                     <h3 style="margin: 0; font-size: 16px; color: #212529; font-weight: 600;">Seal Information</h3>
                     <button class="btn btn-small" id="closeBtn" style="padding: 2px 8px; font-size: 18px; line-height: 1; cursor: pointer;">×</button>
                 </div>
 
                 <div style="margin-bottom: 10px;">
-                    <label style="font-size: 12px; font-weight: 500; color: #495057;">Rack Asset/ Pallet ID #</label>
-                    <input type="text" id="rackAsset" style="width: 100%; padding: 6px 8px; margin-top: 3px; border: 1px solid #ced4da; border-radius: 4px; font-size: 13px;"
+                    <label style="font-size: 12px; font-weight: 500; color: #495057; display: block; margin-bottom: 4px;">Rack Asset/ Pallet ID #</label>
+                    <input type="text" id="rackAsset" style="width: calc(100% - 16px); padding: 6px 8px; border: 1px solid #ced4da; border-radius: 4px; font-size: 13px; box-sizing: border-box;"
                            placeholder="Enter ID number">
                 </div>
 
                 <div style="margin-bottom: 10px;">
-                    <label style="font-size: 12px; font-weight: 500; color: #495057;">Seal #</label>
-                    <input type="text" id="sealNumber" style="width: 100%; padding: 6px 8px; margin-top: 3px; border: 1px solid #ced4da; border-radius: 4px; font-size: 13px;"
+                    <label style="font-size: 12px; font-weight: 500; color: #495057; display: block; margin-bottom: 4px;">Seal #</label>
+                    <input type="text" id="sealNumber" style="width: calc(100% - 16px); padding: 6px 8px; border: 1px solid #ced4da; border-radius: 4px; font-size: 13px; box-sizing: border-box;"
                            placeholder="Enter seal number">
                 </div>
 
                 <div style="margin-bottom: 14px;">
-                    <label style="font-size: 12px; font-weight: 500; color: #6c757d;">Seal #2 <span style="font-weight: 400;">(optional)</span></label>
-                    <input type="text" id="sealNumber2" style="width: 100%; padding: 6px 8px; margin-top: 3px; border: 1px solid #ced4da; border-radius: 4px; font-size: 13px;"
+                    <label style="font-size: 12px; font-weight: 500; color: #6c757d; display: block; margin-bottom: 4px;">Seal #2 <span style="font-weight: 400;">(optional)</span></label>
+                    <input type="text" id="sealNumber2" style="width: calc(100% - 16px); padding: 6px 8px; border: 1px solid #ced4da; border-radius: 4px; font-size: 13px; box-sizing: border-box;"
                            placeholder="Second seal (if applicable)">
                 </div>
 
@@ -177,9 +178,9 @@
         const palletDialog = document.createElement('div');
         palletDialog.innerHTML = `
             <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-                        background: linear-gradient(to bottom, #ffffff, #f8f9fa); padding: 16px;
+                        background: linear-gradient(to bottom, #ffffff, #f8f9fa); padding: 18px;
                         border: 1px solid #dee2e6; z-index: 10001; border-radius: 8px;
-                        box-shadow: 0 4px 20px rgba(0,0,0,0.15); min-width: 400px; max-width: 500px;">
+                        box-shadow: 0 4px 20px rgba(0,0,0,0.15); width: 480px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                     <h3 style="margin: 0; font-size: 16px; color: #212529; font-weight: 600;">Pallet Format - Device List</h3>
                     <button class="btn btn-small" id="closePalletBtn" style="padding: 2px 8px; font-size: 18px; line-height: 1; cursor: pointer;">×</button>
@@ -192,7 +193,7 @@
 
                 <div style="margin-bottom: 12px;">
                     <label style="font-size: 12px; font-weight: 500; color: #495057; display: block; margin-bottom: 4px;">Device List (one per line)</label>
-                    <textarea id="deviceList" style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; min-height: 120px; font-family: monospace; font-size: 12px; resize: vertical;"
+                    <textarea id="deviceList" style="width: calc(100% - 16px); padding: 8px; border: 1px solid #ced4da; border-radius: 4px; min-height: 120px; font-family: monospace; font-size: 12px; resize: vertical; box-sizing: border-box;"
                               placeholder="Example:&#10;Rack Asset: 12345&#10;Rack Asset: 67890&#10;Device: ABC123"></textarea>
                     <div style="font-size: 10px; color: #6c757d; margin-top: 4px;">
                         💡 Paste your list of rack assets or devices here
@@ -311,3 +312,4 @@
 
     waitForContainer();
 })();
+
