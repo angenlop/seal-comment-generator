@@ -39,19 +39,19 @@
 
                 <div style="margin-bottom: 10px;">
                     <label style="font-size: 12px; font-weight: 500; color: #495057; display: block; margin-bottom: 4px;">Rack Asset/ Pallet ID #</label>
-                    <input type="text" id="rackAsset" style="width: calc(100% - 16px); padding: 6px 8px; border: 1px solid #ced4da; border-radius: 4px; font-size: 13px; box-sizing: border-box;"
+                    <input type="text" id="rackAsset" style="width: calc(100% - 16px); padding: 8px; border: 1px solid #ced4da; border-radius: 4px; font-size: 13px; box-sizing: border-box;"
                            placeholder="Enter ID number">
                 </div>
 
                 <div style="margin-bottom: 10px;">
                     <label style="font-size: 12px; font-weight: 500; color: #495057; display: block; margin-bottom: 4px;">Seal #</label>
-                    <input type="text" id="sealNumber" style="width: calc(100% - 16px); padding: 6px 8px; border: 1px solid #ced4da; border-radius: 4px; font-size: 13px; box-sizing: border-box;"
+                    <input type="text" id="sealNumber" style="width: calc(100% - 16px); padding: 8px; border: 1px solid #ced4da; border-radius: 4px; font-size: 13px; box-sizing: border-box;"
                            placeholder="Enter seal number">
                 </div>
 
                 <div style="margin-bottom: 14px;">
                     <label style="font-size: 12px; font-weight: 500; color: #6c757d; display: block; margin-bottom: 4px;">Seal #2 <span style="font-weight: 400;">(optional)</span></label>
-                    <input type="text" id="sealNumber2" style="width: calc(100% - 16px); padding: 6px 8px; border: 1px solid #ced4da; border-radius: 4px; font-size: 13px; box-sizing: border-box;"
+                    <input type="text" id="sealNumber2" style="width: calc(100% - 16px); padding: 8px; border: 1px solid #ced4da; border-radius: 4px; font-size: 13px; box-sizing: border-box;"
                            placeholder="Second seal (if applicable)">
                 </div>
 
