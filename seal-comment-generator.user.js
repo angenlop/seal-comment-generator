@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         Seal# Comment Generator
 // @namespace    http://tampermonkey.net/
-// @version      0.6
+// @version      0.7
 // @description  Format rack asset and seal information with enhanced UI
 // @match        https://*.amazon.com/*
 // @updateURL    https://raw.githubusercontent.com/angenlop/seal-comment-generator/main/seal-comment-generator.user.js
@@ -99,12 +99,13 @@
             const rackAsset = rackInput.value;
             const sealNumber = sealInput.value;
             if (rackAsset && sealNumber) {
-                const text = "Rack Asset#: " + rackAsset + "
-" +
-                    "Contains no customer data bearing drives and is sealed with Seal#: " + sealNumber + "
-" +
-                    "I bagged and securely sealed the rack with tamper evident seals according to standard and in preparation for RZ-to-RZ transfer to RRL.";
-                copyToClipboard(text);
+                const lines = [
+                    'Rack Asset#: ' + rackAsset,
+                    'Contains no customer data bearing drives and is sealed with Seal#: ' + sealNumber,
+                    'I bagged and securely sealed the rack with tamper evident seals according to standard and in preparation for RZ-to-RZ transfer to RRL.'
+                ];
+                copyToClipboard(lines.join('
+'));
                 dialog.remove();
             } else {
                 showNotification('Please fill in both fields', true);
@@ -115,16 +116,15 @@
             const rackAsset = rackInput.value;
             const sealNumber = sealInput.value;
             if (rackAsset && sealNumber) {
-                const text = "Rack Asset#: " + rackAsset + "
-" +
-                    "Sealed with Seal#: " + sealNumber + "
-" +
-                    "Rack has drives and is being shipped intact for RRL to process.
-" +
-                    "Refer to step 11.1.1 of the Network SOP: https://policy.a2z.com/docs/59394/publication
-" +
-                    "I bagged and securely sealed the rack with tamper-evident seals according to standard and in preparation for RZ-to-RZ transfer to RRL.";
-                copyToClipboard(text);
+                const lines = [
+                    'Rack Asset#: ' + rackAsset,
+                    'Sealed with Seal#: ' + sealNumber,
+                    'Rack has drives and is being shipped intact for RRL to process.',
+                    'Refer to step 11.1.1 of the Network SOP: https://policy.a2z.com/docs/59394/publication',
+                    'I bagged and securely sealed the rack with tamper-evident seals according to standard and in preparation for RZ-to-RZ transfer to RRL.'
+                ];
+                copyToClipboard(lines.join('
+'));
                 dialog.remove();
             } else {
                 showNotification('Please fill in both fields', true);
@@ -208,3 +208,4 @@
 
     waitForContainer();
 })();
+
