@@ -1,7 +1,8 @@
+
 // ==UserScript==
 // @name         Seal# Comment Generator
 // @namespace    http://tampermonkey.net/
-// @version      0.7
+// @version      0.5
 // @description  Format rack asset and seal information with enhanced UI
 // @match        https://*.amazon.com/*
 // @updateURL    https://raw.githubusercontent.com/angenlop/seal-comment-generator/main/seal-comment-generator.user.js
@@ -76,10 +77,11 @@
             }
         };
 
+        // Add event listeners
         const rackInput = dialog.querySelector('#rackAsset');
         const sealInput = dialog.querySelector('#sealNumber');
-        const newline = String.fromCharCode(10);
 
+        // Prevent auto-enter behavior and auto-focus next field
         [rackInput, sealInput].forEach((input, index) => {
             input.addEventListener('input', updatePreview);
             input.addEventListener('keypress', (e) => {
@@ -99,12 +101,10 @@
             const rackAsset = rackInput.value;
             const sealNumber = sealInput.value;
             if (rackAsset && sealNumber) {
-                const lines = [
-                    'Rack Asset#: ' + rackAsset,
-                    'Contains no customer data bearing drives and is sealed with Seal#: ' + sealNumber,
-                    'I bagged and securely sealed the rack with tamper evident seals according to standard and in preparation for RZ-to-RZ transfer to RRL.'
-                ];
-                copyToClipboard(lines.join(newline));
+                const text = `Rack Asset#: ${rackAsset}
+Contains no customer data bearing drives and is sealed with Seal#: ${sealNumber}
+I bagged and securely sealed the rack with tamper evident seals according to standard and in preparation for RZ to RZ transfer to Winston Wolfe.`;
+                copyToClipboard(text);
                 dialog.remove();
             } else {
                 showNotification('Please fill in both fields', true);
@@ -115,14 +115,11 @@
             const rackAsset = rackInput.value;
             const sealNumber = sealInput.value;
             if (rackAsset && sealNumber) {
-                const lines = [
-                    'Rack Asset#: ' + rackAsset,
-                    'Sealed with Seal#: ' + sealNumber,
-                    'Rack has drives and is being shipped intact for RRL to process.',
-                    'Refer to step 11.1.1 of the Network SOP: https://policy.a2z.com/docs/59394/publication',
-                    'I bagged and securely sealed the rack with tamper-evident seals according to standard and in preparation for RZ-to-RZ transfer to RRL.'
-                ];
-                copyToClipboard(lines.join(newline));
+                const text = `Rack Asset#: ${rackAsset}
+Rack has drives and is being shipped intact for Winston Wolfe to process.
+Refer to step 11.1.1 of the Network SOP: https://policy.a2z.com/docs/59394/publication
+Sealed with Seal#: ${sealNumber}`;
+                copyToClipboard(text);
                 dialog.remove();
             } else {
                 showNotification('Please fill in both fields', true);
@@ -133,12 +130,14 @@
             dialog.remove();
         });
 
+        // Handle ESC key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 dialog.remove();
             }
         });
 
+        // Initialize preview
         updatePreview();
 
         return dialog;
@@ -154,6 +153,7 @@
         button.addEventListener('click', showDialog);
         container.insertBefore(button, container.firstChild);
 
+        // Add keyboard shortcut
         document.addEventListener('keydown', (e) => {
             if (e.altKey && e.key.toLowerCase() === 'r') {
                 showDialog();
@@ -206,3 +206,4 @@
 
     waitForContainer();
 })();
+
