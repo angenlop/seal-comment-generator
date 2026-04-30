@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         Seal# Comment Generator
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  Format rack asset and seal information with enhanced UI
 // @match        https://*.amazon.com/*
 // @updateURL    https://raw.githubusercontent.com/angenlop/seal-comment-generator/main/seal-comment-generator.user.js
@@ -63,12 +63,17 @@
                         Intact Rack
                     </button>
                 </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px;">
                     <button class="btn btn-small btn-primary" id="palletBtn" style="padding: 10px 4px; font-size: 12px; white-space: nowrap;">
                         Pallet
                     </button>
                     <button class="btn btn-small btn-primary" id="patchBtn" style="padding: 10px 4px; font-size: 12px; white-space: nowrap;">
                         Patch Rack
+                    </button>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px;">
+                    <button class="btn btn-small btn-primary" id="toaBtn" style="padding: 10px 4px; font-size: 12px; white-space: nowrap;">
+                        TOA Rack
                     </button>
                 </div>
 
@@ -168,6 +173,27 @@
             const lines = ['Patch Rack does not need to be wrapped', 'Verified there is no media in rack'];
             copyToClipboard(lines.join(NL));
             dialog.remove();
+        });
+
+        dialog.querySelector('#toaBtn').addEventListener('click', () => {
+            const rackAsset = rackInput.value;
+            const sealNumber = sealInput.value;
+            const sealNumber2 = sealInput2.value;
+            if (rackAsset && sealNumber) {
+                let sealText = 'Seal#: ' + sealNumber;
+                if (sealNumber2) {
+                    sealText = 'Seal#: ' + sealNumber + ' and ' + sealNumber2;
+                }
+                const lines = [
+                    'Rack Asset #: ' + rackAsset,
+                    'Contains no customer data bearing drives and is sealed with ' + sealText,
+                    'I bagged and securely sealed the rack with tamper evident seals according to standard and in preparation for TOA.'
+                ];
+                copyToClipboard(lines.join(NL));
+                dialog.remove();
+            } else {
+                showNotification('Please fill in rack asset/pallet ID and at least one seal number', true);
+            }
         });
 
         dialog.querySelector('#closeBtn').addEventListener('click', () => {
