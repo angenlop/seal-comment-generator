@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         Seal# Comment Generator
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.3
 // @description  Format rack asset and seal information with enhanced UI
 // @match        https://*.amazon.com/*
 // @updateURL    https://raw.githubusercontent.com/angenlop/seal-comment-generator/main/seal-comment-generator.user.js
